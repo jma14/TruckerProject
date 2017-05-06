@@ -11,8 +11,11 @@ namespace TruckerProject.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            TruckersGridView.DataSource = Domain.TruckerManager.GetTruckers();
-            TruckersGridView.DataBind();
+            if (!IsPostBack)
+            {
+                TruckersGridView.DataSource = Domain.TruckerManager.GetTruckers();
+                TruckersGridView.DataBind();
+            }
         }
 
         protected void AddTrucker_Click(object sender, EventArgs e)
