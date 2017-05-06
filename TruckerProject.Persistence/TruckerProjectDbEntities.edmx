@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="TruckerProjectDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Truckers">
+          <Key>
+            <PropertyRef Name="TruckerID" />
+          </Key>
+          <Property Name="TruckerID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="FirstName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="LastName" Type="nchar" MaxLength="20" Nullable="false" />
+          <Property Name="Address" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="CityStateZip" Type="nchar" MaxLength="50" Nullable="false" />
+          <Property Name="LicenseNumber" Type="nchar" MaxLength="10" Nullable="false" />
+          <Property Name="ExpirationDate" Type="date" Nullable="false" />
+          <Property Name="ClassA" Type="bit" Nullable="false" />
+          <Property Name="ClassB" Type="bit" Nullable="false" />
+          <Property Name="ClassC" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TruckerProjectDBModelStoreContainer">
+          <EntitySet Name="Truckers" EntityType="Self.Truckers" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="TruckerProjectDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Trucker">
+          <Key>
+            <PropertyRef Name="TruckerID" />
+          </Key>
+          <Property Name="TruckerID" Type="Guid" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="20" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="CityStateZip" Type="String" MaxLength="50" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="LicenseNumber" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
+          <Property Name="ExpirationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ClassA" Type="Boolean" Nullable="false" />
+          <Property Name="ClassB" Type="Boolean" Nullable="false" />
+          <Property Name="ClassC" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="TruckerProjectDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Truckers" EntityType="Self.Trucker" />
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="TruckerProjectDBModelStoreContainer" CdmEntityContainer="TruckerProjectDBEntities">
+          <EntitySetMapping Name="Truckers">
+            <EntityTypeMapping TypeName="TruckerProjectDBModel.Trucker">
+              <MappingFragment StoreEntitySet="Truckers">
+                <ScalarProperty Name="TruckerID" ColumnName="TruckerID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="CityStateZip" ColumnName="CityStateZip" />
+                <ScalarProperty Name="LicenseNumber" ColumnName="LicenseNumber" />
+                <ScalarProperty Name="ExpirationDate" ColumnName="ExpirationDate" />
+                <ScalarProperty Name="ClassA" ColumnName="ClassA" />
+                <ScalarProperty Name="ClassB" ColumnName="ClassB" />
+                <ScalarProperty Name="ClassC" ColumnName="ClassC" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
