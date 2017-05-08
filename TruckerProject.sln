@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruckerProject.Persistence"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TruckerProject.DTO", "TruckerProject.DTO\TruckerProject.DTO.csproj", "{8A194AC9-033F-41E3-B9D3-607D7E7931C6}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{DE8B81F6-C6E7-4D8F-8489-5E8541E8E0C1}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +35,10 @@ Global
 		{8A194AC9-033F-41E3-B9D3-607D7E7931C6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8A194AC9-033F-41E3-B9D3-607D7E7931C6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8A194AC9-033F-41E3-B9D3-607D7E7931C6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE8B81F6-C6E7-4D8F-8489-5E8541E8E0C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE8B81F6-C6E7-4D8F-8489-5E8541E8E0C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE8B81F6-C6E7-4D8F-8489-5E8541E8E0C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE8B81F6-C6E7-4D8F-8489-5E8541E8E0C1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

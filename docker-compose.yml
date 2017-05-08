@@ -1,0 +1,8 @@
+version: '2.1'
+
+services:
+  truckerproject.web:
+    image: truckerproject.web
+    build:
+      context: .\TruckerProject.Web
+      dockerfile: Dockerfile
