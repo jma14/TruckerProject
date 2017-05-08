@@ -9,27 +9,37 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
         <div class="container">
-            <asp:Button ID="AddTrucker" runat="server" OnClick="AddTrucker_Click" Text="Add Trucker" />
+            <div class="page-header">
+                <h1>Trucker Information</h1>
+            </div>
 
-        
+            <asp:Button ID="AddTrucker" CssClass="btn btn-primary btn-lg" runat="server" OnClick="AddTrucker_Click" Text="Add Trucker" />
 
-            <asp:GridView ID="TruckersGridView" runat="server" CssClass="table table-hover table-bordered table-responsive" GridLines="None" AutoGenerateColumns="False" UseAccessibleHeader="true">
+            <br />
+            <br />
+
+            <asp:GridView ID="TruckersGridView" runat="server" CssClass="table table-bordered table-responsive text-center" AlternatingRowStyle-BackColor="SteelBlue" GridLines="Both" AutoGenerateColumns="False" UseAccessibleHeader="true" OnRowCommand="TruckersGridView_RowCommand" >
                 <Columns>
-                    <asp:BoundField DataField="TruckerID" HeaderText="TruckerID" Visible="false" />
+                    <asp:ButtonField Text="<i class='glyphicon glyphicon-pencil'></i> Edit" CommandName="Edit" ControlStyle-CssClass="btn btn-lg bg-warning"></asp:ButtonField>
+                    <asp:ButtonField Text="<i class='glyphicon glyphicon-remove'></i> Delete" CommandName="Remove" ControlStyle-CssClass="btn btn-lg bg-danger"></asp:ButtonField>
+                    <asp:BoundField DataField="TruckerID" HeaderText="TruckerID" ControlStyle-CssClass="hide"/>
                     <asp:BoundField DataField="FirstName" HeaderText="First Name" />
                     <asp:BoundField DataField="LastName" HeaderText="Last Name" />
                     <asp:BoundField DataField="Address" HeaderText="Address" />
-                    <asp:BoundField DataField="CityStateZip" HeaderText="City/State/Zip" />
+                    <asp:BoundField DataField="City" HeaderText="City" />
+                    <asp:BoundField DataField="State" HeaderText="State" />
+                    <asp:BoundField DataField="Zip" HeaderText="Zip" />
                     <asp:BoundField DataField="LicenseNumber" HeaderText="License Number" />
                     <asp:BoundField DataField="ExpirationDate" HeaderText="Expiration Date" DataFormatString="{0:M/dd/yyyy}" />
-                    <asp:TemplateField HeaderText="ClassA" SortExpression="ClassA">
+                    <asp:TemplateField HeaderText="Class A" SortExpression="ClassA">
                         <ItemTemplate><%# (Boolean.Parse(Eval("ClassA").ToString())) ? "Yes" : "No" %></ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="ClassB" SortExpression="ClassB">
+                    <asp:TemplateField HeaderText="Class B" SortExpression="ClassB">
                         <ItemTemplate><%# (Boolean.Parse(Eval("ClassB").ToString())) ? "Yes" : "No" %></ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="ClassC" SortExpression="ClassC">
+                    <asp:TemplateField HeaderText="Class C" SortExpression="ClassC">
                         <ItemTemplate><%# (Boolean.Parse(Eval("ClassC").ToString())) ? "Yes" : "No" %></ItemTemplate>
                     </asp:TemplateField>
                 </Columns>

@@ -83,7 +83,7 @@ namespace TruckerProject.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox licenseNumberTextBox;
-
+        
         /// <summary>
         /// expirationDateTextBox control.
         /// </summary>
@@ -92,7 +92,7 @@ namespace TruckerProject.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox expirationDateTextBox;
-
+        
         /// <summary>
         /// classACheckBox control.
         /// </summary>
@@ -128,5 +128,14 @@ namespace TruckerProject.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button newTrucker;
+        
+        /// <summary>
+        /// updateTrucker control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button updateTrucker;
     }
 }

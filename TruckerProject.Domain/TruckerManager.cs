@@ -17,5 +17,20 @@ namespace TruckerProject.Domain
         {
             return Persistence.TruckerRepository.GetTruckers();
         }
+
+        public static DTO.TruckerDTO EditTrucker(Guid truckerID)
+        {
+            return Persistence.TruckerRepository.EditTrucker(truckerID);
+        }
+
+        public static void UpdateTrucker(DTO.TruckerDTO updatedTrucker)
+        {
+            Persistence.TruckerRepository.UpdateTrucker(updatedTrucker);
+        }
+
+        public static void DeleteTrucker(Guid truckerID)
+        {
+            Persistence.TruckerRepository.DeleteTrucker(truckerID);
+        }
     }
 }

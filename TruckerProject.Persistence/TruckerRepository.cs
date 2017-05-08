@@ -17,14 +17,16 @@ namespace TruckerProject.Persistence
             db.SaveChanges();
         }
 
-        public static Trucker convertToDb(TruckerDTO truckerDTO)
+        private static Trucker convertToDb(TruckerDTO truckerDTO)
         {
             var dbTrucker = new Trucker();
             dbTrucker.TruckerID = truckerDTO.TruckerID;
             dbTrucker.FirstName = truckerDTO.FirstName;
             dbTrucker.LastName = truckerDTO.LastName;
             dbTrucker.Address = truckerDTO.Address;
-            dbTrucker.CityStateZip = truckerDTO.CityStateZip;
+            dbTrucker.City = truckerDTO.City;
+            dbTrucker.State = truckerDTO.State;
+            dbTrucker.Zip = truckerDTO.Zip;
             dbTrucker.LicenseNumber = truckerDTO.LicenseNumber;
             dbTrucker.ExpirationDate = truckerDTO.ExpirationDate;
             dbTrucker.ClassA = truckerDTO.ClassA;
@@ -41,7 +43,7 @@ namespace TruckerProject.Persistence
             return convertToDTO(dbTruckers);
         }
 
-        public static List<DTO.TruckerDTO> convertToDTO(List<Trucker> truckers)
+        private static List<DTO.TruckerDTO> convertToDTO(List<Trucker> truckers)
         {
             var truckersDTO = new List<DTO.TruckerDTO>();
 
@@ -52,7 +54,9 @@ namespace TruckerProject.Persistence
                 truckerDTO.FirstName = trucker.FirstName;
                 truckerDTO.LastName = trucker.LastName;
                 truckerDTO.Address = trucker.Address;
-                truckerDTO.CityStateZip = trucker.CityStateZip;
+                truckerDTO.City = trucker.City;
+                truckerDTO.State = trucker.State;
+                truckerDTO.Zip = trucker.Zip;
                 truckerDTO.LicenseNumber = trucker.LicenseNumber;
                 truckerDTO.ExpirationDate = trucker.ExpirationDate;
                 truckerDTO.ClassA = trucker.ClassA;
@@ -63,6 +67,51 @@ namespace TruckerProject.Persistence
             }
 
             return truckersDTO;
+        }
+
+        private static DTO.TruckerDTO convertToDTO(Trucker trucker)
+        {
+
+            var truckerDTO = new DTO.TruckerDTO();
+            truckerDTO.TruckerID = trucker.TruckerID;
+            truckerDTO.FirstName = trucker.FirstName;
+            truckerDTO.LastName = trucker.LastName;
+            truckerDTO.Address = trucker.Address;
+            truckerDTO.City = trucker.City;
+            truckerDTO.State = trucker.State;
+            truckerDTO.Zip = trucker.Zip;
+            truckerDTO.LicenseNumber = trucker.LicenseNumber;
+            truckerDTO.ExpirationDate = trucker.ExpirationDate;
+            truckerDTO.ClassA = trucker.ClassA;
+            truckerDTO.ClassB = trucker.ClassB;
+            truckerDTO.ClassC = trucker.ClassC;
+            return truckerDTO;
+        }
+        public static DTO.TruckerDTO EditTrucker(Guid truckerID)
+        {
+            var db = new TruckerProjectDBEntities();
+            var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == truckerID);
+            return convertToDTO(trucker);
+        }
+
+        public static void UpdateTrucker(DTO.TruckerDTO updatedTrucker)
+        {
+            /*
+            var db = new TruckerProjectDBEntities();
+            var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == updatedTrucker.TruckerID);
+            db.Truckers.Remove(trucker);
+            db.SaveChanges();
+            */
+            DeleteTrucker(updatedTrucker.TruckerID);
+            CreateTrucker(updatedTrucker);
+        }
+
+        public static void DeleteTrucker(Guid truckerID)
+        {
+            var db = new TruckerProjectDBEntities();
+            var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == truckerID);
+            db.Truckers.Remove(trucker);
+            db.SaveChanges();
         }
     }
 }
