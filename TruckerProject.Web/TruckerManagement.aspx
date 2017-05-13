@@ -98,9 +98,10 @@
                 <asp:TextBox ID="expirationDateTextBox" runat="server" CssClass="form-control"></asp:TextBox>
              </div>
 
-            <div class="checkbox"><label><asp:CheckBox ID="classACheckBox" runat="server" AutoPostBack="false"/>Class A</label></div>
-            <div class="checkbox"><label><asp:CheckBox ID="classBCheckBox" runat="server" AutoPostBack="false"/>Class B</label></div>
-            <div class="checkbox"><label><asp:CheckBox ID="classCCheckBox" runat="server" AutoPostBack="false"/>Class C</label></div>
+            <div class="form-group">
+                <label>License Type:</label>
+                <asp:TextBox ID="licenseTypeTextBox" runat="server" CssClass="form-control"></asp:TextBox>
+             </div>
 
             <br />
             <br />

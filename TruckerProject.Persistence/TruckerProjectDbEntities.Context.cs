@@ -25,6 +25,7 @@ namespace TruckerProject.Persistence
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<License> Licenses { get; set; }
         public virtual DbSet<Trucker> Truckers { get; set; }
     }
 }

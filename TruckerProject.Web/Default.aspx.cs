@@ -25,7 +25,7 @@ namespace TruckerProject.Web
             int index = Convert.ToInt32(e.CommandArgument);
             GridViewRow row = TruckersGridView.Rows[index];
             var value = row.Cells[2].Text.ToString();
-            var truckerID = Guid.Parse(value);
+            var truckerID = int.Parse(value);
             
             if(e.CommandName=="Edit")
             {

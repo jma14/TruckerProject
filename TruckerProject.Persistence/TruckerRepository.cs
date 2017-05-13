@@ -12,12 +12,14 @@ namespace TruckerProject.Persistence
         public static void CreateTrucker(TruckerDTO truckerDTO)
         {
             var db = new TruckerProjectDBEntities();
-            var dbTrucker = convertToDb(truckerDTO);
+            truckerDTO.TruckerID = db.Truckers.Count() == 0 ? 1 : db.Truckers.OrderByDescending(p => p.TruckerID).FirstOrDefault().TruckerID + 1;
+            List<License> dbLicenses = db.Licenses.ToList();
+            var dbTrucker = convertToDb(truckerDTO, dbLicenses);
             db.Truckers.Add(dbTrucker);
             db.SaveChanges();
         }
 
-        private static Trucker convertToDb(TruckerDTO truckerDTO)
+        private static Trucker convertToDb(TruckerDTO truckerDTO, List<License> dbLicenses)
         {
             var dbTrucker = new Trucker();
             dbTrucker.TruckerID = truckerDTO.TruckerID;
@@ -29,10 +31,10 @@ namespace TruckerProject.Persistence
             dbTrucker.Zip = truckerDTO.Zip;
             dbTrucker.LicenseNumber = truckerDTO.LicenseNumber;
             dbTrucker.ExpirationDate = truckerDTO.ExpirationDate;
-            dbTrucker.ClassA = truckerDTO.ClassA;
-            dbTrucker.ClassB = truckerDTO.ClassB;
-            dbTrucker.ClassC = truckerDTO.ClassC;
-
+            foreach (var license in truckerDTO.Licenses)
+            {
+                dbTrucker.Licenses.Add(dbLicenses.Where(p => p.LicenseType == license.LicenseType).FirstOrDefault());
+            }
             return dbTrucker;
         }
 
@@ -59,9 +61,6 @@ namespace TruckerProject.Persistence
                 truckerDTO.Zip = trucker.Zip;
                 truckerDTO.LicenseNumber = trucker.LicenseNumber;
                 truckerDTO.ExpirationDate = trucker.ExpirationDate;
-                truckerDTO.ClassA = trucker.ClassA;
-                truckerDTO.ClassB = trucker.ClassB;
-                truckerDTO.ClassC = trucker.ClassC;
 
                 truckersDTO.Add(truckerDTO);
             }
@@ -82,12 +81,10 @@ namespace TruckerProject.Persistence
             truckerDTO.Zip = trucker.Zip;
             truckerDTO.LicenseNumber = trucker.LicenseNumber;
             truckerDTO.ExpirationDate = trucker.ExpirationDate;
-            truckerDTO.ClassA = trucker.ClassA;
-            truckerDTO.ClassB = trucker.ClassB;
-            truckerDTO.ClassC = trucker.ClassC;
+
             return truckerDTO;
         }
-        public static DTO.TruckerDTO EditTrucker(Guid truckerID)
+        public static DTO.TruckerDTO EditTrucker(int truckerID)
         {
             var db = new TruckerProjectDBEntities();
             var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == truckerID);
@@ -106,7 +103,7 @@ namespace TruckerProject.Persistence
             CreateTrucker(updatedTrucker);
         }
 
-        public static void DeleteTrucker(Guid truckerID)
+        public static void DeleteTrucker(int truckerID)
         {
             var db = new TruckerProjectDBEntities();
             var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == truckerID);

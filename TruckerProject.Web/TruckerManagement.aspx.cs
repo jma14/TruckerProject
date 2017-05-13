@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
@@ -15,7 +16,7 @@ namespace TruckerProject.Web
             {
                 try
                 {
-                    Guid truckerID = Guid.Parse(Request.QueryString["id"]);
+                    int truckerID = int.Parse(Request.QueryString["id"]);
                     DTO.TruckerDTO activeTrucker = Domain.TruckerManager.EditTrucker(truckerID);
                     fillForm(activeTrucker);
                 }
@@ -36,9 +37,6 @@ namespace TruckerProject.Web
             zipTextBox.Text = activeTrucker.Zip;
             licenseNumberTextBox.Text = activeTrucker.LicenseNumber;
             expirationDateTextBox.Text = activeTrucker.ExpirationDate.ToShortDateString();
-            classACheckBox.Checked = activeTrucker.ClassA;
-            classBCheckBox.Checked = activeTrucker.ClassB;
-            classCCheckBox.Checked = activeTrucker.ClassC;
         }
 
         protected void newTrucker_Click(object sender, EventArgs e)
@@ -50,7 +48,7 @@ namespace TruckerProject.Web
 
         protected void updateTrucker_Click(object sender, EventArgs e)
         {
-            Guid truckerID = Guid.Parse(Request.QueryString["id"]);
+            int truckerID = int.Parse(Request.QueryString["id"]);
             var updatedTrucker = rebuildTrucker(truckerID);
             Domain.TruckerManager.UpdateTrucker(updatedTrucker);
             Response.Redirect("Default.aspx");
@@ -59,7 +57,6 @@ namespace TruckerProject.Web
         private DTO.TruckerDTO buildTrucker()
         {
             DTO.TruckerDTO trucker = new DTO.TruckerDTO();
-            trucker.TruckerID = Guid.NewGuid();
             trucker.FirstName = firstNameTextBox.Text;
             trucker.LastName = lastNameTextBox.Text;
             trucker.Address = addressTextBox.Text;
@@ -68,15 +65,27 @@ namespace TruckerProject.Web
             trucker.Zip = zipTextBox.Text;
             trucker.LicenseNumber = licenseNumberTextBox.Text;
             trucker.ExpirationDate = DateTime.Parse(expirationDateTextBox.Text);
-            trucker.ClassA = classACheckBox.Checked;
-            trucker.ClassB = classBCheckBox.Checked;
-            trucker.ClassC = classCCheckBox.Checked;
+            trucker.Licenses = buildLicenses();
+
             return trucker;
         }
 
-        private DTO.TruckerDTO rebuildTrucker(Guid truckerID)
+        private List<DTO.LicenseDTO> buildLicenses()
+        {
+            List<DTO.LicenseDTO> licenses = new List<DTO.LicenseDTO>();
+            DTO.LicenseDTO license = new DTO.LicenseDTO();
+            DTO.LicenseDTO license2 = new DTO.LicenseDTO();
+            license.LicenseType = licenseTypeTextBox.Text;
+            license2.LicenseType = "B";
+            licenses.Add(license);
+            licenses.Add(license2);
+            return licenses;
+        }
+
+        private DTO.TruckerDTO rebuildTrucker(int truckerID)
         {
             DTO.TruckerDTO trucker = new DTO.TruckerDTO();
+            DTO.LicenseDTO license = new DTO.LicenseDTO();
             trucker.TruckerID = truckerID;
             trucker.FirstName = firstNameTextBox.Text;
             trucker.LastName = lastNameTextBox.Text;
@@ -86,9 +95,7 @@ namespace TruckerProject.Web
             trucker.Zip = zipTextBox.Text;
             trucker.LicenseNumber = licenseNumberTextBox.Text;
             trucker.ExpirationDate = DateTime.Parse(expirationDateTextBox.Text);
-            trucker.ClassA = classACheckBox.Checked;
-            trucker.ClassB = classBCheckBox.Checked;
-            trucker.ClassC = classCCheckBox.Checked;
+
             return trucker;
         }
     }

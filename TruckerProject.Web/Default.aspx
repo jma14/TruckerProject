@@ -24,7 +24,7 @@
                 <Columns>
                     <asp:ButtonField Text="<i class='glyphicon glyphicon-pencil'></i> Edit" CommandName="Edit" ControlStyle-CssClass="btn btn-lg bg-warning" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px" ControlStyle-BorderColor="Black" ControlStyle-BorderWidth="3px"></asp:ButtonField>
                     <asp:ButtonField Text="<i class='glyphicon glyphicon-remove'></i> Delete" CommandName="Remove" ControlStyle-CssClass="btn btn-lg bg-danger" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px" ControlStyle-BorderColor="Black" ControlStyle-BorderWidth="3px"></asp:ButtonField>
-                    <asp:BoundField DataField="TruckerID" HeaderText="TruckerID" HeaderStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
+                    <asp:BoundField DataField="TruckerID" HeaderText="#" HeaderStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="FirstName" HeaderText="First Name" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center text-capitalize"  ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="LastName" HeaderText="Last Name" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center text-capitalize"  ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="Address" HeaderText="Address" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center  text-capitalize" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
@@ -33,15 +33,6 @@
                     <asp:BoundField DataField="Zip" HeaderText="Zip" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center text-capitalize" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="LicenseNumber" HeaderText="License Number" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="ExpirationDate" HeaderText="Expiration Date" DataFormatString="{0:M/dd/yyyy}" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
-                    <asp:TemplateField HeaderText="Class A" SortExpression="ClassA" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px">
-                        <ItemTemplate><%# (Boolean.Parse(Eval("ClassA").ToString())) ? "Yes" : "No" %></ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Class B" SortExpression="ClassB" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px">
-                        <ItemTemplate><%# (Boolean.Parse(Eval("ClassB").ToString())) ? "Yes" : "No" %></ItemTemplate>
-                    </asp:TemplateField>
-                    <asp:TemplateField HeaderText="Class C" SortExpression="ClassC" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px">
-                        <ItemTemplate><%# (Boolean.Parse(Eval("ClassC").ToString())) ? "Yes" : "No" %></ItemTemplate>
-                    </asp:TemplateField>
                 </Columns>
                 <RowStyle CssClass="cursor-pointer" />
             </asp:GridView>

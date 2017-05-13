@@ -49,8 +49,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="TruckerRepository.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="License.cs">
+      <DependentUpon>TruckerProjectDbEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LicenseRepository.cs" />
     <Compile Include="Trucker.cs">
       <DependentUpon>TruckerProjectDbEntities.tt</DependentUpon>
     </Compile>
@@ -69,31 +71,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <EntityDeploy Include="TruckerProjectDbEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>TruckerProjectDbEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
+    <Compile Include="TruckerRepository.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
     <None Include="packages.config" />
+    <EntityDeploy Include="TruckerProjectDbEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>TruckerProjectDbEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
     <None Include="TruckerProjectDbEntities.edmx.diagram">
       <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
     </None>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="TruckerProjectDbEntities.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>TruckerProjectDbEntities.Context.cs</LastGenOutput>
-      <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
-    </Content>
-    <Content Include="TruckerProjectDbEntities.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
-      <LastGenOutput>TruckerProjectDbEntities.cs</LastGenOutput>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
@@ -103,6 +93,19 @@
       <Project>{8a194ac9-033f-41e3-b9d3-607d7e7931c6}</Project>
       <Name>TruckerProject.DTO</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="TruckerProjectDbEntities.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
+      <LastGenOutput>TruckerProjectDbEntities.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="TruckerProjectDbEntities.edmx.sql" />
+    <Content Include="TruckerProjectDbEntities.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
+      <LastGenOutput>TruckerProjectDbEntities.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

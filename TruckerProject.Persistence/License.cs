@@ -12,25 +12,17 @@ namespace TruckerProject.Persistence
     using System;
     using System.Collections.Generic;
     
-    public partial class Trucker
+    public partial class License
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Trucker()
+        public License()
         {
-            this.Licenses = new HashSet<License>();
+            this.Truckers = new HashSet<Trucker>();
         }
     
-        public int TruckerID { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string Address { get; set; }
-        public string City { get; set; }
-        public string State { get; set; }
-        public string Zip { get; set; }
-        public string LicenseNumber { get; set; }
-        public System.DateTime ExpirationDate { get; set; }
+        public string LicenseType { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<License> Licenses { get; set; }
+        public virtual ICollection<Trucker> Truckers { get; set; }
     }
 }
