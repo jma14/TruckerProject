@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LicenseManager.cs" />
+    <Compile Include="StatesManager.cs" />
     <Compile Include="TruckerManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

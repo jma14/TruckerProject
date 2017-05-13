@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace TruckerProject.Domain
 {
-    public class LicenseManager
+    public class StatesManager
     {
-        public static List<DTO.LicenseDTO> GetLicenses()
+        public static List<string> GetStates()
         {
-            return Persistence.LicenseRepository.GetLicenses();
+            return Persistence.StatesRepository.GetStates();
         }
     }
 }

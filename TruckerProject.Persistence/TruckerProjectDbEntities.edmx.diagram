@@ -5,8 +5,8 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="d1f354fb2f93414183a603bf13a6a7d9" Name="Diagram1">
-        <EntityTypeShape EntityType="TruckerProjectDBModel.License" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="TruckerProjectDBModel.Trucker" Width="1.5" PointX="1.875" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="TruckerProjectDBModel.License" Width="1.5" PointX="0.75" PointY="1.75" />
+        <EntityTypeShape EntityType="TruckerProjectDBModel.Trucker" Width="1.5" PointX="3" PointY="1" />
         <AssociationConnector Association="TruckerProjectDBModel.LicenseTrucker" />
       </Diagram>
     </edmx:Diagrams>

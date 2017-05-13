@@ -53,6 +53,7 @@
       <DependentUpon>TruckerProjectDbEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="LicenseRepository.cs" />
+    <Compile Include="StatesRepository.cs" />
     <Compile Include="Trucker.cs">
       <DependentUpon>TruckerProjectDbEntities.tt</DependentUpon>
     </Compile>
@@ -76,11 +77,11 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <None Include="packages.config" />
     <EntityDeploy Include="TruckerProjectDbEntities.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>TruckerProjectDbEntities.Designer.cs</LastGenOutput>
     </EntityDeploy>
+    <None Include="packages.config" />
     <None Include="TruckerProjectDbEntities.edmx.diagram">
       <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
     </None>
@@ -100,7 +101,6 @@
       <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>
       <LastGenOutput>TruckerProjectDbEntities.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="TruckerProjectDbEntities.edmx.sql" />
     <Content Include="TruckerProjectDbEntities.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>TruckerProjectDbEntities.edmx</DependentUpon>

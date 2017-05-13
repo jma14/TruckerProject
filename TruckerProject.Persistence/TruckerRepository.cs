@@ -15,6 +15,7 @@ namespace TruckerProject.Persistence
             truckerDTO.TruckerID = db.Truckers.Count() == 0 ? 1 : db.Truckers.OrderByDescending(p => p.TruckerID).FirstOrDefault().TruckerID + 1;
             List<License> dbLicenses = db.Licenses.ToList();
             var dbTrucker = convertToDb(truckerDTO, dbLicenses);
+
             db.Truckers.Add(dbTrucker);
             db.SaveChanges();
         }
@@ -35,6 +36,7 @@ namespace TruckerProject.Persistence
             {
                 dbTrucker.Licenses.Add(dbLicenses.Where(p => p.LicenseType == license.LicenseType).FirstOrDefault());
             }
+
             return dbTrucker;
         }
 

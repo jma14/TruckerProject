@@ -24,6 +24,8 @@ namespace TruckerProject.Web
                 {
 
                 }
+                makeCheckBoxList();
+                makeStateDropDownList();
             }
         }
 
@@ -37,6 +39,11 @@ namespace TruckerProject.Web
             zipTextBox.Text = activeTrucker.Zip;
             licenseNumberTextBox.Text = activeTrucker.LicenseNumber;
             expirationDateTextBox.Text = activeTrucker.ExpirationDate.ToShortDateString();
+        }
+
+        protected void backToDefaultPage_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("Default.aspx");
         }
 
         protected void newTrucker_Click(object sender, EventArgs e)
@@ -69,19 +76,20 @@ namespace TruckerProject.Web
 
             return trucker;
         }
-
+        
         private List<DTO.LicenseDTO> buildLicenses()
         {
             List<DTO.LicenseDTO> licenses = new List<DTO.LicenseDTO>();
-            DTO.LicenseDTO license = new DTO.LicenseDTO();
-            DTO.LicenseDTO license2 = new DTO.LicenseDTO();
-            license.LicenseType = licenseTypeTextBox.Text;
-            license2.LicenseType = "B";
-            licenses.Add(license);
-            licenses.Add(license2);
+            for (int i = 0; i < licenseCheckBoxList.Items.Count; i++)
+            {
+                if(licenseCheckBoxList.Items[i].Selected)
+                {
+                    licenses.Add(new DTO.LicenseDTO { LicenseType = licenseCheckBoxList.Items[i].Value });
+                }
+            }
             return licenses;
         }
-
+        
         private DTO.TruckerDTO rebuildTrucker(int truckerID)
         {
             DTO.TruckerDTO trucker = new DTO.TruckerDTO();
@@ -97,6 +105,24 @@ namespace TruckerProject.Web
             trucker.ExpirationDate = DateTime.Parse(expirationDateTextBox.Text);
 
             return trucker;
+        }
+
+        private void makeCheckBoxList()
+        {
+
+            List<DTO.LicenseDTO> licenseTypes = Domain.LicenseManager.GetLicenses();
+
+            foreach (var licenseType in licenseTypes)
+            {
+                licenseCheckBoxList.Items.Add(new ListItem { Text = licenseType.LicenseType.ToString(), Value = licenseType.LicenseType.ToString() });
+            }
+
+        }
+
+        private void makeStateDropDownList()
+        {
+            stateDropDownList.DataSource = Domain.StatesManager.GetStates();
+            stateDropDownList.DataBind();
         }
     }
 }
