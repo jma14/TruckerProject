@@ -33,6 +33,7 @@
                     <asp:BoundField DataField="Zip" HeaderText="Zip" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center text-capitalize" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="LicenseNumber" HeaderText="License Number" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
                     <asp:BoundField DataField="ExpirationDate" HeaderText="Expiration Date" DataFormatString="{0:M/dd/yyyy}" HeaderStyle-Wrap="false" ItemStyle-Wrap="false" ItemStyle-CssClass="text-center" ItemStyle-BorderColor="Black" ItemStyle-BorderWidth="3px"/>
+                    
                 </Columns>
                 <RowStyle CssClass="cursor-pointer" />
             </asp:GridView>

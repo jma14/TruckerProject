@@ -14,18 +14,22 @@ namespace TruckerProject.Web
         {
             if(!IsPostBack)
             {
+
+                makeCheckBoxList();
+                makeStateDropDownList();
+
                 try
                 {
                     int truckerID = int.Parse(Request.QueryString["id"]);
                     DTO.TruckerDTO activeTrucker = Domain.TruckerManager.EditTrucker(truckerID);
+                    activeTrucker.TruckerID = truckerID;
                     fillForm(activeTrucker);
                 }
                 catch
                 {
 
                 }
-                makeCheckBoxList();
-                makeStateDropDownList();
+                
             }
         }
 
@@ -39,6 +43,11 @@ namespace TruckerProject.Web
             zipTextBox.Text = activeTrucker.Zip;
             licenseNumberTextBox.Text = activeTrucker.LicenseNumber;
             expirationDateTextBox.Text = activeTrucker.ExpirationDate.ToShortDateString();
+            foreach (var license in activeTrucker.Licenses)
+            {
+                if (licenseCheckBoxList.Items.FindByValue(license.LicenseType.ToString()) != null)
+                    licenseCheckBoxList.Items.FindByValue(license.LicenseType.ToString()).Selected = true;
+            }
         }
 
         protected void backToDefaultPage_Click(object sender, EventArgs e)
@@ -93,7 +102,6 @@ namespace TruckerProject.Web
         private DTO.TruckerDTO rebuildTrucker(int truckerID)
         {
             DTO.TruckerDTO trucker = new DTO.TruckerDTO();
-            DTO.LicenseDTO license = new DTO.LicenseDTO();
             trucker.TruckerID = truckerID;
             trucker.FirstName = firstNameTextBox.Text;
             trucker.LastName = lastNameTextBox.Text;
@@ -103,6 +111,7 @@ namespace TruckerProject.Web
             trucker.Zip = zipTextBox.Text;
             trucker.LicenseNumber = licenseNumberTextBox.Text;
             trucker.ExpirationDate = DateTime.Parse(expirationDateTextBox.Text);
+            trucker.Licenses = buildLicenses();
 
             return trucker;
         }

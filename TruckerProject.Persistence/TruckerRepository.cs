@@ -12,10 +12,12 @@ namespace TruckerProject.Persistence
         public static void CreateTrucker(TruckerDTO truckerDTO)
         {
             var db = new TruckerProjectDBEntities();
-            truckerDTO.TruckerID = db.Truckers.Count() == 0 ? 1 : db.Truckers.OrderByDescending(p => p.TruckerID).FirstOrDefault().TruckerID + 1;
+            if(truckerDTO.TruckerID == 0)
+            {
+                truckerDTO.TruckerID = db.Truckers.Count() == 0 ? 1 : db.Truckers.OrderByDescending(p => p.TruckerID).FirstOrDefault().TruckerID + 1;
+            }
             List<License> dbLicenses = db.Licenses.ToList();
             var dbTrucker = convertToDb(truckerDTO, dbLicenses);
-
             db.Truckers.Add(dbTrucker);
             db.SaveChanges();
         }
@@ -63,7 +65,11 @@ namespace TruckerProject.Persistence
                 truckerDTO.Zip = trucker.Zip;
                 truckerDTO.LicenseNumber = trucker.LicenseNumber;
                 truckerDTO.ExpirationDate = trucker.ExpirationDate;
-
+                truckerDTO.Licenses = new List<LicenseDTO>();
+                foreach (var license in trucker.Licenses)
+                {
+                    truckerDTO.Licenses.Add(new DTO.LicenseDTO { LicenseType = license.LicenseType });
+                }
                 truckersDTO.Add(truckerDTO);
             }
 
@@ -83,24 +89,23 @@ namespace TruckerProject.Persistence
             truckerDTO.Zip = trucker.Zip;
             truckerDTO.LicenseNumber = trucker.LicenseNumber;
             truckerDTO.ExpirationDate = trucker.ExpirationDate;
+            truckerDTO.Licenses = new List<LicenseDTO>();
+            foreach (var license in trucker.Licenses)
+            {
+                truckerDTO.Licenses.Add(new DTO.LicenseDTO { LicenseType = license.LicenseType });
+            }
 
             return truckerDTO;
         }
         public static DTO.TruckerDTO EditTrucker(int truckerID)
         {
             var db = new TruckerProjectDBEntities();
-            var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == truckerID);
+            var trucker = db.Truckers.Where(p => p.TruckerID == truckerID).FirstOrDefault();
             return convertToDTO(trucker);
         }
 
         public static void UpdateTrucker(DTO.TruckerDTO updatedTrucker)
         {
-            /*
-            var db = new TruckerProjectDBEntities();
-            var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == updatedTrucker.TruckerID);
-            db.Truckers.Remove(trucker);
-            db.SaveChanges();
-            */
             DeleteTrucker(updatedTrucker.TruckerID);
             CreateTrucker(updatedTrucker);
         }
@@ -108,7 +113,8 @@ namespace TruckerProject.Persistence
         public static void DeleteTrucker(int truckerID)
         {
             var db = new TruckerProjectDBEntities();
-            var trucker = db.Truckers.FirstOrDefault(p => p.TruckerID == truckerID);
+            var trucker = db.Truckers.Where(p => p.TruckerID == truckerID).FirstOrDefault();
+            db.Database.ExecuteSqlCommand("DELETE FROM dbo.LicenseTrucker WHERE TruckerID = {0}", truckerID);
             db.Truckers.Remove(trucker);
             db.SaveChanges();
         }
